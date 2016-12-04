@@ -2,6 +2,7 @@ import pygame
 from pygame import *
 from pygame.sprite import *
 import sys
+import mixer
 pygame.init()
 
 #colors
@@ -97,15 +98,20 @@ all_list=Group(bar_list, block_list, sprite_list) #list of all objects
 
 start_ticks=pygame.time.get_ticks() #timer starter
 
-
-
 def main(): ##MAIN GAME LOOP
+
 	print ("You have 15 seconds to capture the white flag.")
 	
+	try: #music
+		pygame.mixer.music.load("mozart.mp3")
+		pygame.mixer.music.play(loops=-1)
+	except:
+		pass
+
 	gameExit = False
 	while not gameExit:
 		draw()
-		
+
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				gameExit = True
